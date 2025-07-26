@@ -1,59 +1,21 @@
-/*
- * Top‑level application for Evolution Stables.
- * Simple centered layout matching the fv-demo reference design.
- */
-
-import { useState } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from '@futureverse/auth-react';
-import './App.css';
+import { Home } from './pages/Home';
+import { About } from './pages/About';
+import { MyStable } from './pages/MyStable';
+
+function ProtectedRoute({ children }: { children: React.ReactNode }) {
+  const { userSession } = useAuth();
+  return userSession ? <>{children}</> : <Navigate to="/" />;
+}
 
 export default function App() {
-  const { authClient, signIn, userSession, isFetchingSession } = useAuth();
-  const [isSigningIn, setIsSigningIn] = useState(false);
-
-  const handleSignIn = async () => {
-    try {
-      setIsSigningIn(true);
-      await signIn({ authFlow: 'redirect' });
-    } catch (error) {
-      console.error('Sign in error:', error);
-      setIsSigningIn(false);
-    }
-  };
-
-  const handleSignOut = async () => {
-    try {
-      await authClient.signOutPass({ flow: 'redirect' });
-    } catch (error) {
-      console.error('Sign out error:', error);
-    }
-  };
-
-  if (isFetchingSession) {
-    return <div>Loading...</div>;
-  }
-
-  if (userSession) {
-    return (
-      <div>
-        <h2>Welcome!</h2>
-        <p>You are signed in with Pass</p>
-        <p>User ID: {userSession.user?.profile?.sub}</p>
-        <p>Futurepass: {userSession.futurepass}</p>
-        <button onClick={handleSignOut}>
-          Sign Out
-        </button>
-      </div>
-    );
-  }
-
   return (
-    <div>
-      <h2>Sign In with Pass</h2>
-      <p>Click the button below to sign in using Futureverse Pass</p>
-      <button onClick={handleSignIn} disabled={isSigningIn}>
-        {isSigningIn ? 'Signing In...' : 'Sign In with Pass'}
-      </button>
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/mystable" element={<ProtectedRoute><MyStable /></ProtectedRoute>} />
+      <Route path="/callback" element={<div>Authenticating...</div>} />
+    </Routes>
   );
 }
