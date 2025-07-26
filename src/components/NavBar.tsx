@@ -25,58 +25,72 @@ export function NavBar() {
     <nav style={{ 
       display: 'flex', 
       alignItems: 'center', 
-      justifyContent: 'space-between',
-      padding: '1.5rem 3rem', 
+      justifyContent: 'center',
+      padding: '1.5rem clamp(1rem, 4vw, 3rem)', 
       background: '#fff', 
       borderBottom: '1px solid #f0f0f0',
-      minHeight: '80px'
+      minHeight: '80px',
+      width: '100%',
+      boxSizing: 'border-box'
     }}>
-      <div style={{ display: 'flex', alignItems: 'center', flex: '1' }}>
-        <img src={logoSvg} alt="Evolution Stables" style={{ height: '32px' }} />
-      </div>
-      <div style={{ 
-        display: 'flex', 
-        alignItems: 'center', 
-        gap: '2rem',
-        flex: '1',
-        justifyContent: 'center'
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        width: '100%',
+        maxWidth: '1200px'
       }}>
+        <div style={{ display: 'flex', alignItems: 'center', flex: '1' }}>
+          <img src={logoSvg} alt="Evolution Stables" style={{ height: '48px' }} />
+        </div>
+        <div style={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          gap: 'clamp(1rem, 2vw, 1.5rem)',
+          flex: '2',
+          justifyContent: 'center'
+        }}>
         <Link to="/" style={{ 
-          padding: '0.75rem 1.5rem', 
+          padding: '0.6rem 1.2rem', 
           background: '#f8f9fa', 
           borderRadius: '8px', 
           textDecoration: 'none', 
           color: '#495057',
-          fontSize: '0.95rem',
+          fontSize: '0.9rem',
           fontWeight: '500',
           border: '1px solid #e9ecef',
           transition: 'all 0.2s ease'
         }}>Home</Link>
         <Link to="/about" style={{ 
-          padding: '0.75rem 1.5rem', 
+          padding: '0.6rem 1.2rem', 
           background: '#f8f9fa', 
           borderRadius: '8px', 
           textDecoration: 'none', 
           color: '#495057',
-          fontSize: '0.95rem',
+          fontSize: '0.9rem',
           fontWeight: '500',
           border: '1px solid #e9ecef',
           transition: 'all 0.2s ease'
         }}>About</Link>
         <Link to="/mystable" style={{ 
-          padding: '0.75rem 1.5rem', 
+          padding: '0.6rem 1.2rem', 
           background: '#f8f9fa', 
           borderRadius: '8px', 
           textDecoration: 'none', 
           color: '#495057',
-          fontSize: '0.95rem',
+          fontSize: '0.9rem',
           fontWeight: '500',
           border: '1px solid #e9ecef',
           transition: 'all 0.2s ease'
         }}>MyStable</Link>
-      </div>
-      <div style={{ display: 'flex', alignItems: 'center', flex: '1', justifyContent: 'flex-end' }}>
-        {userSession ? (
+        </div>
+        <div style={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          flex: '1', 
+          justifyContent: 'flex-end' 
+        }}>
+          {userSession ? (
           <>
             <span style={{ marginRight: '1rem', color: '#6c757d', fontSize: '0.9rem' }}>
               {userSession.futurepass?.slice(0, 6)}...
@@ -98,31 +112,50 @@ export function NavBar() {
             </button>
           </>
         ) : (
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            <span style={{ 
-              color: '#495057', 
-              fontSize: '0.95rem',
-              fontWeight: '500'
-            }}>
+          <div style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: 'clamp(0.4rem, 1.5vw, 0.7rem)',
+            padding: 'clamp(0.4rem, 1.2vw, 0.6rem) clamp(0.8rem, 2.5vw, 1.2rem)',
+            border: '1px solid #000',
+            borderRadius: '10px',
+            background: '#fff',
+            whiteSpace: 'nowrap',
+            flexShrink: 0
+          }}>
+            <button
+              onClick={handleSignIn}
+              style={{ 
+                color: '#495057', 
+                fontSize: 'clamp(0.75rem, 1.8vw, 0.85rem)',
+                fontWeight: '500',
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                padding: '0'
+              }}
+            >
               Sign in
-            </span>
+            </button>
             <button 
               onClick={handleSignIn}
               style={{ 
-                padding: '0.75rem 1.5rem', 
+                padding: 'clamp(0.4rem, 1.2vw, 0.6rem) clamp(0.8rem, 2.5vw, 1.2rem)', 
                 background: '#4f46e5', 
                 color: '#fff', 
                 border: 'none', 
-                borderRadius: '8px',
+                borderRadius: '7px',
                 cursor: 'pointer',
-                fontSize: '0.95rem',
-                fontWeight: '500'
+                fontSize: 'clamp(0.75rem, 1.8vw, 0.85rem)',
+                fontWeight: '500',
+                whiteSpace: 'nowrap'
               }}
             >
               Get Started
             </button>
           </div>
         )}
+      </div>
       </div>
     </nav>
   );

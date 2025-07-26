@@ -3,34 +3,54 @@ import { Link } from 'react-router-dom';
 
 export function Home() {
   return (
-    <div style={{ minHeight: '100vh', background: '#fff' }}>
+    <div style={{ 
+      minHeight: '100vh', 
+      background: '#f1f3f4', 
+      display: 'flex', 
+      flexDirection: 'column',
+      width: '100%'
+    }}>
       <NavBar />
       <div style={{ 
-        maxWidth: '1200px', 
+        flex: 1,
+        width: '100%',
+        maxWidth: 'min(90vw, 1000px)', 
         margin: '0 auto', 
-        padding: '4rem 3rem',
+        padding: 'clamp(1rem, 3vw, 2rem) clamp(1rem, 3vw, 2rem)',
         display: 'flex',
         flexDirection: 'column',
-        gap: '3rem'
+        gap: 'clamp(1rem, 2vw, 1.5rem)',
+        justifyContent: 'center',
+        alignItems: 'center',
+        minHeight: 'calc(100vh - 100px)',
+        boxSizing: 'border-box'
       }}>
         <section style={{ 
-          padding: '4rem 3rem', 
+          width: '100%',
+          maxWidth: '800px',
+          padding: 'clamp(2rem, 5vw, 3rem) clamp(1.5rem, 4vw, 2.5rem)', 
           background: '#fff', 
           borderRadius: '12px', 
-          border: '1px solid #f0f0f0',
-          textAlign: 'center'
+          border: '1px solid #e9ecef',
+          boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
+          textAlign: 'center',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          minHeight: 'clamp(250px, 30vh, 350px)',
+          margin: '0 auto'
         }}>
           <h1 style={{ 
-            fontSize: '3rem', 
+            fontSize: 'clamp(2rem, 5vw, 3rem)', 
             fontWeight: '300', 
             color: '#212529', 
-            marginBottom: '1.5rem',
+            marginBottom: '1rem',
             letterSpacing: '-0.02em'
           }}>
             Home
           </h1>
           <p style={{ 
-            fontSize: '1.25rem', 
+            fontSize: 'clamp(1.1rem, 2.5vw, 1.6rem)', 
             color: '#6c757d', 
             marginBottom: '0.75rem',
             fontWeight: '300'
@@ -38,7 +58,7 @@ export function Home() {
             Welcome to Evolution Stables!
           </p>
           <p style={{ 
-            fontSize: '1.1rem', 
+            fontSize: 'clamp(1rem, 2vw, 1.3rem)', 
             color: '#adb5bd',
             fontWeight: '300'
           }}>
@@ -47,25 +67,29 @@ export function Home() {
         </section>
 
         <section style={{ 
-          padding: '3rem', 
+          width: '100%',
+          maxWidth: '800px',
+          padding: 'clamp(1.5rem, 3vw, 2rem)', 
           background: '#fff', 
           borderRadius: '12px', 
-          border: '1px solid #f0f0f0'
+          border: '1px solid #e9ecef',
+          boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
+          margin: '0 auto'
         }}>
           <h2 style={{ 
-            fontSize: '1.75rem', 
+            fontSize: 'clamp(1.3rem, 3vw, 1.6rem)', 
             fontWeight: '400', 
             color: '#212529', 
-            marginBottom: '1.5rem',
+            marginBottom: '0.8rem',
             letterSpacing: '-0.01em'
           }}>
             About
           </h2>
           <p style={{ 
-            fontSize: '1.1rem', 
+            fontSize: 'clamp(0.9rem, 2vw, 1.1rem)', 
             color: '#6c757d', 
-            marginBottom: '2.5rem',
-            lineHeight: '1.7',
+            marginBottom: '1.2rem',
+            lineHeight: '1.5',
             fontWeight: '300'
           }}>
             Learn more about Evolution Stables - a premier digital horse racing and breeding platform built on the Futureverse ecosystem.
@@ -89,25 +113,29 @@ export function Home() {
         </section>
 
         <section style={{ 
-          padding: '3rem', 
+          width: '100%',
+          maxWidth: '800px',
+          padding: 'clamp(1.5rem, 3vw, 2rem)', 
           background: '#fff', 
           borderRadius: '12px', 
-          border: '1px solid #f0f0f0'
+          border: '1px solid #e9ecef',
+          boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
+          margin: '0 auto'
         }}>
           <h2 style={{ 
-            fontSize: '1.75rem', 
+            fontSize: 'clamp(1.3rem, 3vw, 1.6rem)', 
             fontWeight: '400', 
             color: '#212529', 
-            marginBottom: '1.5rem',
+            marginBottom: '0.8rem',
             letterSpacing: '-0.01em'
           }}>
             MyStable
           </h2>
           <p style={{ 
-            fontSize: '1.1rem', 
+            fontSize: 'clamp(0.9rem, 2vw, 1.1rem)', 
             color: '#6c757d', 
-            marginBottom: '2.5rem',
-            lineHeight: '1.7',
+            marginBottom: '1.2rem',
+            lineHeight: '1.5',
             fontWeight: '300'
           }}>
             Access your personal stable and manage your assets.

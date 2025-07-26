@@ -27,67 +27,84 @@ export function MyStable() {
   };
 
   return (
-    <div style={{ minHeight: '100vh', background: '#fff' }}>
+    <div style={{ 
+      minHeight: '100vh', 
+      background: '#f1f3f4', 
+      display: 'flex', 
+      flexDirection: 'column',
+      width: '100%'
+    }}>
       <NavBar />
       <div style={{ 
-        maxWidth: '1200px', 
+        flex: 1,
+        width: '100%',
+        maxWidth: 'min(90vw, 800px)', 
         margin: '0 auto', 
-        padding: '4rem 3rem'
+        padding: 'clamp(2rem, 4vw, 3rem) clamp(1.5rem, 4vw, 2rem)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        minHeight: 'calc(100vh - 100px)',
+        boxSizing: 'border-box'
       }}>
         <section style={{ 
-          padding: '4rem 3rem', 
+          width: '100%',
+          padding: 'clamp(2rem, 5vw, 3rem) clamp(1.5rem, 4vw, 2.5rem)', 
           background: '#fff', 
           borderRadius: '12px', 
-          border: '1px solid #f0f0f0',
-          textAlign: 'center'
+          border: '1px solid #e9ecef',
+          boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
+          textAlign: 'center',
+          maxWidth: '700px',
+          margin: '0 auto'
         }}>
           <h1 style={{ 
-            fontSize: '3rem', 
+            fontSize: 'clamp(2rem, 5vw, 3rem)', 
             fontWeight: '300', 
             color: '#212529', 
-            marginBottom: '3rem',
+            marginBottom: '2rem',
             letterSpacing: '-0.02em'
           }}>
             My Stable
           </h1>
           <div style={{ 
-            maxWidth: '800px',
+            maxWidth: '600px',
             margin: '0 auto'
           }}>
             {userSession ? (
               <>
                 <p style={{ 
-                  fontSize: '1.25rem', 
+                  fontSize: 'clamp(0.95rem, 2vw, 1.2rem)', 
                   color: '#6c757d', 
-                  lineHeight: '1.8',
-                  marginBottom: '1rem',
+                  lineHeight: '1.6',
+                  marginBottom: '0.8rem',
                   fontWeight: '300'
                 }}>
                   Futurepass: {userSession?.futurepass}
                 </p>
                 <p style={{ 
-                  fontSize: '1.25rem', 
+                  fontSize: 'clamp(0.95rem, 2vw, 1.2rem)', 
                   color: '#6c757d', 
-                  lineHeight: '1.8',
-                  marginBottom: '3rem',
+                  lineHeight: '1.6',
+                  marginBottom: '2rem',
                   fontWeight: '300'
                 }}>
                   User ID: {userSession?.user?.profile?.sub || 'N/A'}
                 </p>
                 <div>
                   <h3 style={{ 
-                    fontSize: '2rem', 
+                    fontSize: 'clamp(1.4rem, 3vw, 1.8rem)', 
                     fontWeight: '300', 
                     color: '#212529', 
-                    marginBottom: '1.5rem',
+                    marginBottom: '1rem',
                     letterSpacing: '-0.01em'
                   }}>
                     Your Assets
                   </h3>
                   <p style={{ 
-                    fontSize: '1.25rem', 
+                    fontSize: 'clamp(0.95rem, 2vw, 1.2rem)', 
                     color: '#6c757d',
-                    lineHeight: '1.8',
+                    lineHeight: '1.6',
                     fontWeight: '300'
                   }}>
                     Asset management features coming soon...
@@ -97,10 +114,10 @@ export function MyStable() {
             ) : (
               <>
                 <p style={{ 
-                  fontSize: '1.25rem', 
+                  fontSize: 'clamp(1rem, 2.2vw, 1.4rem)', 
                   color: '#6c757d', 
-                  lineHeight: '1.8',
-                  marginBottom: '3rem',
+                  lineHeight: '1.7',
+                  marginBottom: '2rem',
                   fontWeight: '300'
                 }}>
                   Please sign in to view your stable and manage your assets.
