@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { NavBar } from '../components/NavBar';
+import { AuthLoadingScreen } from '../components/AuthLoadingScreen';
 import { useAuth } from '@futureverse/auth-react';
 
 interface FormData {
@@ -73,14 +74,33 @@ export function MyStable() {
 
   const handleSkip = () => setShowForm(false);
 
-  if (!userSession) return <div>Authenticating...</div>;
+  if (!userSession) return <AuthLoadingScreen />;
 
   return (
-    <div style={{ fontFamily: 'Arial, sans-serif', color: '#333' }}>
+    <div style={{ 
+      fontFamily: 'Arial, sans-serif', 
+      color: '#333',
+      minHeight: '100vh',
+      background: '#f1f3f4'
+    }}>
       <NavBar />
-      <section style={{ maxWidth: '600px', margin: '2rem auto', padding: '2rem', background: '#fff', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
-        <h1 style={{ textAlign: 'center', marginBottom: '1rem' }}>My Stable</h1>
-        <p style={{ textAlign: 'center', marginBottom: '2rem' }}>Wallet: {userSession.futurepass}</p>
+      <div style={{ 
+        display: 'flex', 
+        justifyContent: 'center', 
+        padding: '2rem',
+        minHeight: 'calc(100vh - 100px)'
+      }}>
+        <section style={{ 
+          maxWidth: '700px', 
+          width: '100%',
+          background: '#fff', 
+          borderRadius: '12px', 
+          boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+          padding: '3rem 2.5rem',
+          height: 'fit-content'
+        }}>
+          <h1 style={{ textAlign: 'center', marginBottom: '1rem', fontSize: '2.5rem', fontWeight: '300' }}>My Stable</h1>
+          <p style={{ textAlign: 'center', marginBottom: '2rem', color: '#6c757d' }}>Wallet: {userSession.futurepass}</p>
 
         {showForm ? (
           <div>
@@ -272,7 +292,8 @@ export function MyStable() {
             <button type="button" onClick={() => setShowForm(true)} style={{ padding: '0.5rem 1rem', background: '#4f46e5', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>Edit Profile</button>
           </div>
         )}
-      </section>
+        </section>
+      </div>
     </div>
   );
 }

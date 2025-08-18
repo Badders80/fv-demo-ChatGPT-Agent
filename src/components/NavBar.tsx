@@ -1,10 +1,23 @@
 import { useAuth } from '@futureverse/auth-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import logoSvg from '../assets/Logo-and-Evolution-Gold.svg';
 
 export function NavBar() {
   const { userSession, authClient, signIn } = useAuth();
+  const location = useLocation();
   
+  const getTabStyle = (path: string) => ({
+    padding: '0.6rem 1.2rem', 
+    borderRadius: '8px', 
+    textDecoration: 'none', 
+    fontSize: '0.9rem',
+    fontWeight: '500',
+    border: '1px solid #e9ecef',
+    transition: 'all 0.2s ease',
+    background: location.pathname === path ? '#4f46e5' : '#f8f9fa',
+    color: location.pathname === path ? '#fff' : '#495057',
+  });
+
   const handleLogout = async () => {
     try {
       await authClient.signOutPass({ flow: 'redirect' });
@@ -50,39 +63,9 @@ export function NavBar() {
           flex: '2',
           justifyContent: 'center'
         }}>
-        <Link to="/" style={{ 
-          padding: '0.6rem 1.2rem', 
-          background: '#f8f9fa', 
-          borderRadius: '8px', 
-          textDecoration: 'none', 
-          color: '#495057',
-          fontSize: '0.9rem',
-          fontWeight: '500',
-          border: '1px solid #e9ecef',
-          transition: 'all 0.2s ease'
-        }}>Home</Link>
-        <Link to="/about" style={{ 
-          padding: '0.6rem 1.2rem', 
-          background: '#f8f9fa', 
-          borderRadius: '8px', 
-          textDecoration: 'none', 
-          color: '#495057',
-          fontSize: '0.9rem',
-          fontWeight: '500',
-          border: '1px solid #e9ecef',
-          transition: 'all 0.2s ease'
-        }}>About</Link>
-        <Link to="/mystable" style={{ 
-          padding: '0.6rem 1.2rem', 
-          background: '#f8f9fa', 
-          borderRadius: '8px', 
-          textDecoration: 'none', 
-          color: '#495057',
-          fontSize: '0.9rem',
-          fontWeight: '500',
-          border: '1px solid #e9ecef',
-          transition: 'all 0.2s ease'
-        }}>MyStable</Link>
+        <Link to="/" style={getTabStyle('/')}>Home</Link>
+        <Link to="/about" style={getTabStyle('/about')}>About</Link>
+        <Link to="/mystable" style={getTabStyle('/mystable')}>MyStable</Link>
         </div>
         <div style={{ 
           display: 'flex', 
